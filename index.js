@@ -15,7 +15,7 @@ require('./keep_alive.js');
     let potency = 33;
     let efficiency = 297;
 
-    const autostart = false;
+    const autostart = true;
 
     // Random delay generator for general actions (6 to 9 seconds)
     function getRandomDelay(min = 1000, max = 4000) {
