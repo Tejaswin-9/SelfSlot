@@ -1,4 +1,3 @@
-require('dotenv').config();
 const Discord = require("discord.js-selfbot-v13");
 const keep_alive = require("./keep_alive.js")
 const { token, channel_id } = require("./config.json");
