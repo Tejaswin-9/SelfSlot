@@ -3,8 +3,6 @@ const Discord = require("discord.js-selfbot-v13");
 const keep_alive = require("./keep_alive.js")
 const { token, channel_id } = require("./config.json");
 
-// Import ES Modules dynamically
-
 (async () => {
     const client = new Discord.Client({
         checkUpdate: false, // This disables the update warning
