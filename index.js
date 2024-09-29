@@ -1,4 +1,6 @@
 const Discord = require("discord.js-selfbot-v13");
+const dotenv = require("dotenv")
+dotenv.config()
 
 // Import ES Modules dynamically
 let chalk, figlet, ora;
