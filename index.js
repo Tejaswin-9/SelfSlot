@@ -2,9 +2,9 @@ require('dotenv').config();
 const Discord = require("discord.js-selfbot-v13");
 require('./keep_alive.js');
 
+
 (async () => {
     const client = new Discord.Client();
-
     const CHANNEL_ID = "949518755690577970";
 
     // Centralized values for intel, energy, and endur
@@ -15,7 +15,7 @@ require('./keep_alive.js');
     let potency = 33;
     let efficiency = 297;
 
-    const autostart = true;
+    const autostart = false;
 
     // Random delay generator for general actions (6 to 9 seconds)
     function getRandomDelay(min = 1000, max = 4000) {
@@ -289,6 +289,11 @@ require('./keep_alive.js');
         }
     }
 
+    function test() {
+        let x = 0;
+        setTimeout(() => sendMessage("Working"), x);
+    }
+
     // Display a fancy startup banner and bot status
     function displayBanner() {
         console.clear();
@@ -306,6 +311,7 @@ require('./keep_alive.js');
             if (content === ".hunt1") await hunt1();
             if (content === ".pills") await pills();
             if (content === ".lsd") await lsd();
+            if (content === ".test") await test();
         } catch (err) {
             console.error(chalk.red(`Error processing message: ${err.message}`));
         }
