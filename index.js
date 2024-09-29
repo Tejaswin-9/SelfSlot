@@ -1,4 +1,4 @@
-const Discord = require("discord.js-selfbot");
+const Discord = require("discord.js-selfbot-v13");
 require("dotenv").config();
 
 // Import ES Modules dynamically
