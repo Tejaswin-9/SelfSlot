@@ -1,7 +1,3 @@
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
-
 const Discord = require("discord.js-selfbot-v13");
 require("dotenv").config();
 
@@ -25,6 +21,8 @@ let chalk, figlet, ora;
     let agil = 16
     let potency = 33;
     let efficiency = 297;
+
+    const autostart = true;
 
     // Random delay generator for general actions (6 to 9 seconds)
     function getRandomDelay(min = 1000, max = 4000) {
@@ -327,9 +325,14 @@ let chalk, figlet, ora;
 
     client.on("ready", function () {
         displayBanner();
-        ora(chalk.green(`Logged in as ${client.user.tag}`)).succeed();
+        console.log(`Logged in as ${client.user.tag}`);
         client.user.setPresence({ status: "invisible" });
+
+        if (autostart) {
+            intro();  // Starts intro automatically when the bot logs in
+        }
+
     });
 
-    client.login(ACCOUNT_TOKEN);
+    client.login(process.env.KID);
 })();
