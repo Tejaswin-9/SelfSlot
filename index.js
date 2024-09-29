@@ -1,17 +1,10 @@
+require('dotenv').config();
 const Discord = require("discord.js-selfbot-v13");
-const dotenv = require("dotenv")
-dotenv.config()
-
-// Import ES Modules dynamically
-let chalk, figlet, ora;
+const keep_alive = require("./keep_alive.js")
 
 (async () => {
-    chalk = (await import("chalk")).default;
-    figlet = (await import("figlet")).default;
-    ora = (await import("ora")).default;
-
     const client = new Discord.Client();
-    
+
     const CHANNEL_ID = "949518755690577970";
 
     // Centralized values for intel, energy, and endur
@@ -21,6 +14,8 @@ let chalk, figlet, ora;
     let agil = 16
     let potency = 33;
     let efficiency = 297;
+
+    const autostart = false;
 
     // Random delay generator for general actions (6 to 9 seconds)
     function getRandomDelay(min = 1000, max = 4000) {
@@ -54,11 +49,11 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve efficiency ${efficiency}`), x);
         x += getRandomDelay();
@@ -70,19 +65,17 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage("~feed p"), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage("~grabid"), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
@@ -97,11 +90,17 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage("~drink"), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage("~fert can"), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage("~harvest can"), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage("~pet"), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback intel ${intel}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve efficiency ${efficiency}`), x);
         x += getRandomDelay();
@@ -111,9 +110,11 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`11 min wait loop`), x);
+        setTimeout(() => sendMessage(`11 min wait -> loop`), x);
         x += getRandomDelay() + 666000;
         setTimeout(() => sendMessage("~feed c"), x);
         x += getRandomDelay();
@@ -138,13 +139,13 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage(`5 min wait -> #1`), x);
+        setTimeout(() => sendMessage(`5 min wait -> hunt1`), x);
         x += getRandomDelay() + 300000;
         setTimeout(() => sendMessage("~feed p"), x);
         x += getRandomDelay();
@@ -152,11 +153,11 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
@@ -166,7 +167,7 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(hunt2, x);
     }
-        
+
     function hunt2() {
         let x = 0;
         for (let i = 0; i < 34; i++) {
@@ -179,13 +180,13 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage(`5 min wait -> #2`), x);
+        setTimeout(() => sendMessage(`5 min wait -> hunt2`), x);
         x += getRandomDelay() + 300000;
         setTimeout(() => sendMessage("~feed p"), x);
         x += getRandomDelay();
@@ -193,15 +194,15 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`17 min wait`), x);
+        setTimeout(() => sendMessage(`17 min wait -> final`), x);
         x += 1023000;
         setTimeout(loop, x); // Continue loop after hunting
     }
@@ -212,11 +213,11 @@ let chalk, figlet, ora;
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve efficiency ${efficiency}`), x);
         x += getRandomDelay();
@@ -291,12 +292,7 @@ let chalk, figlet, ora;
     // Display a fancy startup banner and bot status
     function displayBanner() {
         console.clear();
-        console.log(chalk.cyanBright(figlet.textSync("Slotbot Script", {
-            font: "Big",
-            horizontalLayout: "default",
-            verticalLayout: "default"
-        })));
-        console.log(chalk.bold.blue("\nStarting bot operations..."));
+        console.log("\nStarting bot operations...");
     }
 
     // Listen for commands
@@ -317,8 +313,13 @@ let chalk, figlet, ora;
 
     client.on("ready", function () {
         displayBanner();
-        ora(chalk.green(`Logged in as ${client.user.tag}`)).succeed();
+        console.log(`Logged in as ${client.user.tag}`);
         client.user.setPresence({ status: "invisible" });
+
+        if (autostart) {
+            intro();  // Starts intro automatically when the bot logs in
+        }
+
     });
 
     client.login(process.env.KID);
