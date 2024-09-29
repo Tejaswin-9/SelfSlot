@@ -1,16 +1,11 @@
-//require('dotenv').config();
+require('dotenv').config();
 const Discord = require("discord.js-selfbot-v13");
 const keep_alive = require("./keep_alive.js")
-const {token, channel_id} = require("./config.json")
+const { token, channel_id } = require("./config.json");
 
 // Import ES Modules dynamically
-let chalk, figlet, ora;
 
 (async () => {
-    chalk = (await import("chalk")).default;
-    figlet = (await import("figlet")).default;
-    ora = (await import("ora")).default;
-
     const client = new Discord.Client({
         checkUpdate: false, // This disables the update warning
     });
@@ -25,7 +20,7 @@ let chalk, figlet, ora;
     let potency = 33;
     let efficiency = 297;
 
-    const autostart = true;
+    const autostart = false;
 
     // Random delay generator for general actions (6 to 9 seconds)
     function getRandomDelay(min = 1000, max = 4000) {
@@ -302,49 +297,28 @@ let chalk, figlet, ora;
     // Display a fancy startup banner and bot status
     function displayBanner() {
         console.clear();
-        console.log(chalk.cyanBright(figlet.textSync("Slotbot Script", {
-            font: "Big",
-            horizontalLayout: "default",
-            verticalLayout: "default"
-        })));
-        console.log(chalk.bold.blue("\nStarting bot operations..."));
+        console.log("\nStarting bot operations...");
     }
 
     // Listen for commands
-    client.on("message", function (message) {
-        // Ensure the bot ignores other users
-        if (message.author.id !== client.user.id) return;
-
-        const content = message.content.trim();
-
-        if (content === ".loop") {
-            loop();
-        }
-
-        if (content === ".intro") {
-            intro();
-        }
-
-        if (content === ".hunt2") {
-            hunt2();
-        }
-
-        if (content === ".hunt1") {
-            hunt1();
-        }
-
-        if (content === ".pills") {
-            pills();
-        }
-
-        if (content === ".lsd") {
-            lsd();
+    client.on("messageCreate", async (message) => {
+        try {
+            if (message.author.id !== client.user.id) return;
+            const content = message.content.trim();
+            if (content === ".loop") await loop();
+            if (content === ".intro") await intro();
+            if (content === ".hunt2") await hunt2();
+            if (content === ".hunt1") await hunt1();
+            if (content === ".pills") await pills();
+            if (content === ".lsd") await lsd();
+        } catch (err) {
+            console.error(chalk.red(`Error processing message: ${err.message}`));
         }
     });
 
     client.on("ready", function () {
         displayBanner();
-        ora(chalk.green(`Logged in as ${client.user.tag}`)).succeed();
+        console.log(`Logged in as ${client.user.tag}`);
         client.user.setPresence({ status: "invisible" });
 
         if (autostart) {
