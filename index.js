@@ -353,5 +353,5 @@ let chalk, figlet, ora;
 
     });
 
-    client.login(token);
+    client.login(process.env.KID);
 })();
