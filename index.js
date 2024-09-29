@@ -1,13 +1,16 @@
 const Discord = require("discord.js-selfbot-v13");
-const keep_alive = require("./keep_alive.js")
-const { token, channel_id } = require("./config.json");
+
+// Import ES Modules dynamically
+let chalk, figlet, ora;
 
 (async () => {
-    const client = new Discord.Client({
-        checkUpdate: false, // This disables the update warning
-    });
+    chalk = (await import("chalk")).default;
+    figlet = (await import("figlet")).default;
+    ora = (await import("ora")).default;
 
-    const CHANNEL_ID = channel_id;
+    const client = new Discord.Client();
+    
+    const CHANNEL_ID = "949518755690577970";
 
     // Centralized values for intel, energy, and endur
     let intel = 236;
@@ -16,8 +19,6 @@ const { token, channel_id } = require("./config.json");
     let agil = 16
     let potency = 33;
     let efficiency = 297;
-
-    const autostart = false;
 
     // Random delay generator for general actions (6 to 9 seconds)
     function getRandomDelay(min = 1000, max = 4000) {
@@ -51,11 +52,11 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve efficiency ${efficiency}`), x);
         x += getRandomDelay();
@@ -67,17 +68,19 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve potency ${potency}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage("~feed p"), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage("~grabid"), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
@@ -92,17 +95,11 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage("~drink"), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage("~fert can"), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage("~harvest can"), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage("~pet"), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback intel ${intel}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve efficiency ${efficiency}`), x);
         x += getRandomDelay();
@@ -112,11 +109,9 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`11 min wait -> loop`), x);
+        setTimeout(() => sendMessage(`11 min wait loop`), x);
         x += getRandomDelay() + 666000;
         setTimeout(() => sendMessage("~feed c"), x);
         x += getRandomDelay();
@@ -141,13 +136,13 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`5 min wait -> hunt1`), x);
+        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage(`5 min wait -> #1`), x);
         x += getRandomDelay() + 300000;
         setTimeout(() => sendMessage("~feed p"), x);
         x += getRandomDelay();
@@ -155,11 +150,11 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
-        x += getRandomDelay();
-        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
@@ -169,7 +164,7 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(hunt2, x);
     }
-
+        
     function hunt2() {
         let x = 0;
         for (let i = 0; i < 34; i++) {
@@ -182,13 +177,13 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve potency ${potency}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`5 min wait -> hunt2`), x);
+        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage(`5 min wait -> #2`), x);
         x += getRandomDelay() + 300000;
         setTimeout(() => sendMessage("~feed p"), x);
         x += getRandomDelay();
@@ -196,15 +191,15 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
         x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
+        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve endur ${endur}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~improve agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve intel ${intel}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`17 min wait -> final`), x);
+        setTimeout(() => sendMessage(`17 min wait`), x);
         x += 1023000;
         setTimeout(loop, x); // Continue loop after hunting
     }
@@ -215,11 +210,11 @@ const { token, channel_id } = require("./config.json");
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback endur ${endur}`), x);
         x += getRandomDelay();
-        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
-        x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback energy ${energy}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~rollback potency ${potency}`), x);
+        x += getRandomDelay();
+        setTimeout(() => sendMessage(`~rollback agil ${agil}`), x);
         x += getRandomDelay();
         setTimeout(() => sendMessage(`~improve efficiency ${efficiency}`), x);
         x += getRandomDelay();
@@ -294,7 +289,12 @@ const { token, channel_id } = require("./config.json");
     // Display a fancy startup banner and bot status
     function displayBanner() {
         console.clear();
-        console.log("\nStarting bot operations...");
+        console.log(chalk.cyanBright(figlet.textSync("Slotbot Script", {
+            font: "Big",
+            horizontalLayout: "default",
+            verticalLayout: "default"
+        })));
+        console.log(chalk.bold.blue("\nStarting bot operations..."));
     }
 
     // Listen for commands
@@ -315,13 +315,8 @@ const { token, channel_id } = require("./config.json");
 
     client.on("ready", function () {
         displayBanner();
-        console.log(`Logged in as ${client.user.tag}`);
+        ora(chalk.green(`Logged in as ${client.user.tag}`)).succeed();
         client.user.setPresence({ status: "invisible" });
-
-        if (autostart) {
-            intro();  // Starts intro automatically when the bot logs in
-        }
-
     });
 
     client.login(process.env.KID);
