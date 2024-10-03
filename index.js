@@ -5,8 +5,7 @@ require('./keep_alive.js');
 
 (async () => {
     const client = new Discord.Client();
-    const CHANNEL_ID1 = "949518755690577970";
-    const CHANNEL_ID2 = "949518755690577970";
+    const CHANNEL_ID = "949518755690577970";
 
     // Centralized values for intel, energy, and endur
     let intel = 236;
@@ -35,17 +34,7 @@ require('./keep_alive.js');
 // Helper function to send a message and show status in the console
     async function sendMessage(message) {
         try {
-            const channel = await client.channels.fetch(CHANNEL_ID1); // Fetch the channel by ID
-            await channel.send(message); // Send the message
-            console.log(`Sent: ${message}`); // Log the sent message
-        } catch (error) {
-            console.error(`Error sending message: ${error}`); // Log any errors
-        }
-    }
-
-    async function sendHMessage(message) {
-        try {
-            const channel = await client.channels.fetch(CHANNEL_ID2); // Fetch the channel by ID
+            const channel = await client.channels.fetch(CHANNEL_ID); // Fetch the channel by ID
             await channel.send(message); // Send the message
             console.log(`Sent: ${message}`); // Log the sent message
         } catch (error) {
@@ -309,18 +298,6 @@ require('./keep_alive.js');
 
     // Listen for commands
     client.on("messageCreate", async (message) => {
-        if (message.author.id === client.user.id) { // Ensure it's your self-bot messages
-            if (message.content === '.c1') {
-                CHANNEL_ID2 = "949518755690577970";  // First channel
-                console.log(`Channel set to: ${CHANNEL_ID2}`);
-                await message.reply("Channel switched to c1.");
-            } else if (message.content === '.c2') {
-                CHANNEL_ID2 = "969640613609898004";  // Second channel
-                console.log(`Channel set to: ${CHANNEL_ID2}`);
-                await message.reply("Channel switched to c2.");
-            }
-        }
-        
         try {
             if (message.author.id !== client.user.id) return;
             const content = message.content.trim();
